@@ -74,6 +74,8 @@ void free_arguments(char **arg)
 /**
  * execute_command - Executes the command.
  * @arg: Array of arguments for the command.
+ * @env: environ variable.
+ * @argh: name of the program.
  */
 void execute_command(char **arg, char **argh, char **env)
 {
@@ -99,14 +101,19 @@ void execute_command(char **arg, char **argh, char **env)
  * Checks if shell is interactive or non-interactive
  *@argh: shell arguments
  *@ac: number of arguments
+ *@env: environ variable.
  * Return: Always returns 0.
  */
 int main(int ac, char **argh, char **env)
 {
 	(void) ac;
-	if (isatty(STDIN_FILENO))
+	/**
+	 *if (isatty(STDIN_FILENO))
+	 */
 		is_interactive(argh, env);
-	else
-		is_non_interactive(env);
+	/**
+	 *else
+	 *	is_non_interactive(env);
+	 */
 	return (0);
 }

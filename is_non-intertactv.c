@@ -2,6 +2,7 @@
 /**
  * is_non_interactive - Command on non-interactive mode.
  *
+ * @env: environ variable
  * Return: 0 on success.
  */
 int is_non_interactive(char **env)

@@ -2,6 +2,7 @@
 /**
  * is_interactive - command in interactive mode.
  *  @argh: :handle the command in interactive mode.
+ * @env: environ variable.
  *
  * Return: 0 on success.
  */
@@ -16,13 +17,14 @@ int is_interactive(char **argh, char **env)
 
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		rdgtl = getline(&command, &len, stdin);
-		if (command == NULL)
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			return (-1);
-		}
+		/**
+		 *if (command == NULL)
+		 *{
+		 *	write(STDOUT_FILENO, "\n", 1);
+		 *	return (-1);
+		 */
 		if (rdgtl == -1)
-			free(command),  exit(1);
+			free(command), write(STDOUT_FILENO, "\n", 1), exit(EXIT_SUCCESS);
 		arg = comtokniz(command, " \n\t");
 		if (arg == NULL)
 			free_arguments(arg), free(command), exit(1);
