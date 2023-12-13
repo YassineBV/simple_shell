@@ -75,10 +75,10 @@ void free_arguments(char **arg)
  * execute_command - Executes the command.
  * @arg: Array of arguments for the command.
  */
-void execute_command(char **arg, char **argh)
+void execute_command(char **arg, char **argh, char **env)
 {
 	int j = 0;
-	int readexc = execve(arg[0], arg, environ);
+	int readexc = execve(arg[0], arg, env);
 
 	if (readexc == -1)
 	{
@@ -101,12 +101,12 @@ void execute_command(char **arg, char **argh)
  *@ac: number of arguments
  * Return: Always returns 0.
  */
-int main(int ac, char **argh)
+int main(int ac, char **argh, char **env)
 {
 	(void) ac;
 	if (isatty(STDIN_FILENO))
-		is_interactive(argh);
+		is_interactive(argh, env);
 	else
-		is_non_interactive();
+		is_non_interactive(env);
 	return (0);
 }

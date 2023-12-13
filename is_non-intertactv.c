@@ -4,7 +4,7 @@
  *
  * Return: 0 on success.
  */
-int is_non_interactive(void)
+int is_non_interactive(char **env)
 {
 	char **arg = NULL, *command = NULL;
 	size_t len = 0;
@@ -29,7 +29,7 @@ int is_non_interactive(void)
 			free_arguments(arg), exit(1);
 		if (child == 0)
 		{
-			redexc = execve(arg[0], arg, environ);
+			redexc = execve(arg[0], arg, env);
 			if (redexc == -1)
 				free_arguments(arg), exit(1);
 		}

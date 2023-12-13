@@ -5,7 +5,7 @@
  *
  * Return: 0 on success.
  */
-int is_interactive(char **argh)
+int is_interactive(char **argh, char **env)
 {
 	while (1)
 	{
@@ -38,7 +38,7 @@ int is_interactive(char **argh)
 				write(STDOUT_FILENO, ": No such file or directory\n", 28);
 				exit(1);
 			}
-			execute_command(arg, argh);
+			execute_command(arg, argh, env);
 		}
 		if (chidpid > 0)
 			wait(&status);
