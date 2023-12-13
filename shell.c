@@ -75,14 +75,15 @@ void free_arguments(char **arg)
  * execute_command - Executes the command.
  * @arg: Array of arguments for the command.
  */
-void execute_command(char **arg)
+void execute_command(char **arg, char **argh)
 {
 	int j = 0;
 	int readexc = execve(arg[0], arg, environ);
 
 	if (readexc == -1)
 	{
-		write(STDOUT_FILENO, "./shell: No such file or directory\n", 36);
+		write(STDOUT_FILENO, argh[0], strlen(argh[0]));
+		write(STDOUT_FILENO, ": No such file or directory\n", 28);
 		while (arg[j])
 		{
 			free(arg[j]);

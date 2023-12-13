@@ -38,7 +38,7 @@ int is_interactive(char **argh)
 				write(STDOUT_FILENO, ": No such file or directory\n", 28);
 				exit(1);
 			}
-			execute_command(arg);
+			execute_command(arg, argh);
 		}
 		if (chidpid > 0)
 			wait(&status);
