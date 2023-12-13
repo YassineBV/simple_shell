@@ -1,21 +1,19 @@
 #include "myShlHead.h"
 /**
  * is_interactive - command in interactive mode.
- *  handle the command in interactive mode.
+ *  @argh: :handle the command in interactive mode.
  *
  * Return: 0 on success.
  */
-int is_interactive(void)
+int is_interactive(char **argh)
 {
-	int status = 0, rdgtl = 0;
-	char **arg = NULL, *command = NULL;
-
 	while (1)
 	{
+		int status = 0, rdgtl = 0;
 		size_t len = 0;
 		pid_t chidpid;
+		char **arg = NULL, *command = NULL;
 
-		arg = NULL, command = NULL;
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		rdgtl = getline(&command, &len, stdin);
 		if (command == NULL)
@@ -36,7 +34,8 @@ int is_interactive(void)
 			if (arg[1] != NULL)
 			{
 				free_arguments(arg);
-				write(STDOUT_FILENO, "./shell: No such file or directory\n", 36);
+				write(STDOUT_FILENO, argh[0], strlen(argh[0]));
+				write(STDOUT_FILENO, ": No such file or directory\n", 28);
 				exit(1);
 			}
 			execute_command(arg);

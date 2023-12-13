@@ -10,7 +10,7 @@
 #include <signal.h>
 
 extern char **environ;
-int is_interactive(void);
+int is_interactive(char **argh);
 int is_non_interactive(void);
 char **comtokniz(char *command, char *delm);
 void sighand(int jh);

@@ -96,13 +96,15 @@ void execute_command(char **arg)
 /**
  * main - Entry point for the shell.
  * Checks if shell is interactive or non-interactive
- *
+ *@argh: shell arguments
+ *@ac: number of arguments
  * Return: Always returns 0.
  */
-int main(void)
+int main(int ac, char **argh)
 {
+	(void) ac;
 	if (isatty(STDIN_FILENO))
-		is_interactive();
+		is_interactive(argh);
 	else
 		is_non_interactive();
 	return (0);
