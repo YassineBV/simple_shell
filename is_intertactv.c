@@ -23,7 +23,7 @@ int is_interactive(char **argh, char **env)
 			return (-1);
 		}
 		if (rdgtl == -1)
-			free(command), exit(EXIT_SUCCESS);
+			free(command), exit(127);
 		arg = comtokniz(command, " \n\t");
 		if (arg == NULL)
 			free_arguments(arg), free(command), exit(1);
@@ -32,14 +32,13 @@ int is_interactive(char **argh, char **env)
 			free_arguments(arg), exit(1);
 		if (chidpid == 0)
 		{
-			/**
-			*if (arg[1] != NULL)
-			*{
-			*	free_arguments(arg);
-			*	write(STDOUT_FILENO, argh[0], strlen(argh[0]));
-			*	write(STDOUT_FILENO, ": No such file or directory\n", 28);
-			*	exit(1);
-			*/
+			if (arg[1] != NULL)
+			{
+				free_arguments(arg);
+				write(STDOUT_FILENO, argh[0], strlen(argh[0]));
+				write(STDOUT_FILENO, ": No such file or directory\n", 28);
+				exit(1);
+			}
 			execute_command(arg, argh, env);
 		}
 		if (chidpid > 0)
