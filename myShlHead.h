@@ -9,12 +9,12 @@
 #include <string.h>
 #include <signal.h>
 
-/*extern char **environ;*/
-int is_interactive(char **argh, char **env);
-int is_non_interactive(char **env);
+extern char **environ;
+int is_interactive(char **argh);
+int is_non_interactive(void);
 char **comtokniz(char *command, char *delm);
 void sighand(int jh);
-void execute_command(char **arg, char **argh, char **env);
+void execute_command(char **arg, char **argh);
 void free_arguments(char **arg);
 
 #endif

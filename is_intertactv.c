@@ -2,11 +2,11 @@
 /**
  * is_interactive - command in interactive mode.
  *  @argh: :handle the command in interactive mode.
- * @env: environ variable.
+ * environ variable.
  *
  * Return: 0 on success.
  */
-int is_interactive(char **argh, char **env)
+int is_interactive(char **argh)
 {
 	while (1)
 	{
@@ -39,7 +39,7 @@ int is_interactive(char **argh, char **env)
 				write(STDOUT_FILENO, ": No such file or directory\n", 28);
 				exit(1);
 			}
-			execute_command(arg, argh, env);
+			execute_command(arg, argh);
 		}
 		if (chidpid > 0)
 			wait(&status);

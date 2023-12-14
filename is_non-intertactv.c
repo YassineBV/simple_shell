@@ -2,10 +2,10 @@
 /**
  * is_non_interactive - Command on non-interactive mode.
  *
- * @env: environ variable
+ * environ variable
  * Return: 0 on success.
  */
-int is_non_interactive(char **env)
+int is_non_interactive(void)
 {
 	char **arg = NULL, *command = NULL;
 	size_t len = 0;
@@ -30,7 +30,7 @@ int is_non_interactive(char **env)
 			free_arguments(arg), exit(1);
 		if (child == 0)
 		{
-			redexc = execve(arg[0], arg, env);
+			redexc = execve(arg[0], arg, environ);
 			if (redexc == -1)
 				free_arguments(arg), exit(1);
 		}
