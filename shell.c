@@ -107,13 +107,13 @@ void execute_command(char **arg, char **argh, char **env)
 int main(int ac, char **argh, char **env)
 {
 	(void) ac;
-	/**
-	 *if (isatty(STDIN_FILENO))
-	 */
+
+	if (isatty(STDIN_FILENO))
+
 		is_interactive(argh, env);
-	/**
-	 *else
-	 *	is_non_interactive(env);
-	 */
+
+	else
+		is_non_interactive(env);
+
 	return (0);
 }
