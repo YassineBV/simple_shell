@@ -16,5 +16,8 @@ char **comtokniz(char *command, char *delm);
 void sighand(int jh);
 void execute_command(char **arg, char **argh);
 void free_arguments(char **arg);
+char *_strdup(char *str);
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
 
 #endif

@@ -12,13 +12,13 @@ char **comtokniz(char *command, char *delm)
 	char *copycom, *token, *cop2;
 	int tokcount = 0, i = 0;
 
-	copycom = strdup(command);
+	copycom = _strdup(command);
 	if (copycom == NULL)
 	{
 		free(copycom);
 		return (NULL);
 	}
-	cop2 = strdup(command);
+	cop2 = _strdup(command);
 	if (cop2 == NULL)
 	{
 		free(cop2);
@@ -36,8 +36,8 @@ char **comtokniz(char *command, char *delm)
 	token = strtok(cop2, delm);
 	while (token != NULL)
 	{
-		argv[i] = malloc(strlen(token)  + 1);
-		strcpy(argv[i], token);
+		argv[i] = malloc(_strlen(token)  + 1);
+		_strcpy(argv[i], token);
 		token = strtok(NULL, delm);
 		i++;
 	}
