@@ -8,20 +8,22 @@
  */
 int is_interactive(char **argh)
 {
+	int status = 0;
+
 	while (1)
 	{
-		int status = 0, rdgtl = 0;
+		int rdgtl = 0;
 		size_t len = 0;
 		pid_t chidpid;
 		char **arg = NULL, *command = NULL;
 
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		write(STDOUT_FILENO, "$ ", 2);
 		rdgtl = getline(&command, &len, stdin);
-		if (command == NULL)
+		/*if (command == NULL)
 		{
 			write(STDOUT_FILENO, "\n", 1);
 			return (-1);
-		}
+		}*/
 		if (rdgtl == -1)
 			free(command), exit(127);
 		arg = comtokniz(command, " \n\t");
@@ -40,10 +42,10 @@ int is_interactive(char **argh)
 			}
 			execute_command(arg, argh);
 		}
-		if (chidpid > 0)
+		if (chidpid > 0){
 			wait(&status);
 		free_arguments(arg);
-		free(command);
+		free(command);}
 	}
-	return (0);
+	return (WEXITSTATUS(status));
 }
