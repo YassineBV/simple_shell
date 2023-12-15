@@ -35,8 +35,7 @@ int is_interactive(char **argh)
 			if (arg[1] != NULL)
 			{
 				free_arguments(arg);
-				write(STDOUT_FILENO, argh[0], strlen(argh[0]));
-				write(STDOUT_FILENO, ": No such file or directory\n", 28);
+				perror(argh[0]);
 				exit(1);
 			}
 			execute_command(arg, argh);

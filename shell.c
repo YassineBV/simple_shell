@@ -84,8 +84,7 @@ void execute_command(char **arg, char **argh)
 
 	if (readexc == -1)
 	{
-		write(STDOUT_FILENO, argh[0], strlen(argh[0]));
-		write(STDOUT_FILENO, ": No such file or directory\n", 28);
+		perror(argh[0]);
 		while (arg[j])
 		{
 			free(arg[j]);
