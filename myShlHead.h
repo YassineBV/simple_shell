@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <signal.h>
+#include <errno.h>
 
 extern char **environ;
 int is_interactive(char **argh);

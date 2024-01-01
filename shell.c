@@ -52,9 +52,11 @@ char **comtokniz(char *command, char *delm)
  */
 void sighand(int jh)
 {
-	(void) jh;
-	write(STDOUT_FILENO, "\n", 1);
-	exit(0);
+	if (jh == SIGINT)
+	{
+		exit(0);
+	}
+
 }
 /**
  * free_arguments - free the memory allocated for arguments.
@@ -106,6 +108,8 @@ void execute_command(char **arg, char **argh)
 int main(int ac, char **argh)
 {
 	(void) ac;
+
+	signal(SIGINT, sighand);
 
 	if (isatty(STDIN_FILENO))
 

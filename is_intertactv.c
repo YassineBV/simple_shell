@@ -96,13 +96,15 @@ int is_interactive(char **argh)
 
 		write(STDOUT_FILENO, "$ ", 2);
 		rdgtl = getline(&command, &len, stdin);
-		/*if (command == NULL)
+		if (command == NULL)
 		{
 			write(STDOUT_FILENO, "\n", 1);
 			return (-1);
-		}*/
-		if (rdgtl == -1)
-			free(command), exit(127);
+		}
+		if (rdgtl == -1){
+			free(command);
+			perror("getline"), exit(EXIT_FAILURE);
+		}
 		arg = comtokniz(command, " \n\t");
 		if (arg == NULL)
 			free_arguments(arg), free(command), exit(1);
